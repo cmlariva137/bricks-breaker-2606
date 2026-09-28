@@ -103,7 +103,7 @@ void Game::CheckCollision()
 		}
 	}
 
-	// TODO #6 - If no bricks remain, pause ball and display (render) victory text with R to reset
+	// TODO #6 - If no bricks remain, pause ball and display (render) victory text with R to reset 
 	if (bricks.size() == 0)
 	{
 		ball.x_velocity = 0;
@@ -117,11 +117,21 @@ void Game::CheckCollision()
 		ball.y_velocity *= -1;
 	}
 
-	// TODO #7 - If ball touches bottom of window, pause ball and display (render) defeat text with R to reset
+	// TODO #7 - If ball touches bottom of window, pause ball and display (render) defeat text with R to reset *DONE*
 	if (ball.y_position >= paddle.y_position)
 	{
 		ball.x_velocity = 0;
 		ball.y_velocity = 0;
 
+		PositionText(45, 14, "YOU LOSE");
+		PositionText(40, 15, "Press R to restart");
 	}
+}
+
+void Game::PositionText(short x, short y, std::string text)
+{
+	HANDLE handleConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD cursorCoordinates = { x,y };
+	SetConsoleCursorPosition(handleConsole, cursorCoordinates);
+	std::cout << text;
 }

@@ -2,6 +2,7 @@
 #include "Box.h"
 #include "Ball.h"
 #include <vector>
+#include <Windows.h>
 
 class Game
 {
@@ -18,4 +19,5 @@ public:
 	void Reset();
 	void ResetBall();
 	void CheckCollision();
+	void PositionText(short x, short y, std::string text);
 };
