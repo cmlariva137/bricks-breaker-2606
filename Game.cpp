@@ -103,13 +103,14 @@ void Game::CheckCollision()
 		}
 	}
 
-	// TODO #6 - If no bricks remain, pause ball and display (render) victory text with R to reset 
+	// TODO #6 - If no bricks remain, pause ball and display (render) victory text with R to reset *DONE*
 	if (bricks.size() == 0)
 	{
 		ball.x_velocity = 0;
 		ball.y_velocity = 0;
 
-
+		PositionText(45, 14, "YOU LOSE");
+		PositionText(40, 15, "Press R to restart");
 	}
 
 	if (paddle.Contains(ball.x_position + ball.x_velocity, ball.y_velocity + ball.y_position))
