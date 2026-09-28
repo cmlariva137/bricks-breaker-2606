@@ -8,7 +8,7 @@ class Game
 	Ball ball;
 	Box paddle;
 
-	// TODO #1 - Instead of storing 1 brick, store a vector of bricks (by value)
+	// TODO #1 - Instead of storing 1 brick, store a vector of bricks (by value) *DONE*
 	std::vector<Box> bricks;
 
 public:
