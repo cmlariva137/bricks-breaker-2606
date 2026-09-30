@@ -8,6 +8,8 @@ Game::Game()
 
 void Game::Reset()
 {
+	win = false;
+	lose = false;
 	Console::SetWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Console::CursorVisible(false);
 	paddle.width = 12;
@@ -83,6 +85,21 @@ void Game::Render() const
 		brick.Draw();
 	}
 
+	if (win)
+	{
+		Console::SetCursorPosition(45, 14);
+		std::cout << "YOU WIN";
+		Console::SetCursorPosition(40, 15);
+		std::cout << "Press R to restart";
+	}
+	if (lose)
+	{
+		Console::SetCursorPosition(45, 14);
+		std::cout << "YOU LOSE";
+		Console::SetCursorPosition(40, 15);
+		std::cout << "Press R to restart";
+	}
+
 	Console::Lock(false);
 }
 
@@ -110,8 +127,7 @@ void Game::CheckCollision()
 		ball.x_velocity = 0;
 		ball.y_velocity = 0;
 
-		PositionText(45, 14, "YOU WIN");
-		PositionText(40, 15, "Press R to restart");
+		win = true;
 	}
 
 	if (paddle.Contains(ball.x_position + ball.x_velocity, ball.y_velocity + ball.y_position))
@@ -125,15 +141,6 @@ void Game::CheckCollision()
 		ball.x_velocity = 0;
 		ball.y_velocity = 0;
 
-		PositionText(45, 14, "YOU LOSE");
-		PositionText(40, 15, "Press R to restart");
+		lose = true;
 	}
-}
-
-void Game::PositionText(short x, short y, std::string text)
-{
-	HANDLE handleConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD cursorCoordinates = { x,y };
-	SetConsoleCursorPosition(handleConsole, cursorCoordinates);
-	std::cout << text;
 }
