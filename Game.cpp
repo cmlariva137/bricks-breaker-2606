@@ -21,6 +21,7 @@ void Game::Reset()
 
 	// TODO #2 - Add this brick and 4 more bricks to the vector *DONE*
 	int xPos = 0;
+	int widthMargin = 17;
 	while (bricks.size() < 5)
 	{
 		Box brick;
@@ -32,7 +33,7 @@ void Game::Reset()
 		brick.color = (ConsoleColor) 3;
 
 		bricks.push_back(brick);
-		xPos += 10;
+		xPos += widthMargin;
 	}
 }
 
@@ -109,7 +110,7 @@ void Game::CheckCollision()
 		ball.x_velocity = 0;
 		ball.y_velocity = 0;
 
-		PositionText(45, 14, "YOU LOSE");
+		PositionText(45, 14, "YOU WIN");
 		PositionText(40, 15, "Press R to restart");
 	}
 
